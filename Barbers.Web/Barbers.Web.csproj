@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\.DS_Store" />
+    <None Include="wwwroot\fonts\.DS_Store" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\scss\.DS_Store" />
+    <None Include="wwwroot\scss\bootstrap\.DS_Store" />
+  </ItemGroup>
+
+</Project>
