@@ -1,18 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\css\.DS_Store" />
-    <None Include="wwwroot\fonts\.DS_Store" />
-    <None Include="wwwroot\js\site.js" />
-    <None Include="wwwroot\scss\.DS_Store" />
-    <None Include="wwwroot\scss\bootstrap\.DS_Store" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
@@ -21,12 +13,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Barber.Data\Barber.Data.csproj" />
-    <ProjectReference Include="..\Barbers.Core\Barbers.Core.csproj" />
   </ItemGroup>
 
 </Project>

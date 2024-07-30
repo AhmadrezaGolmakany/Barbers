@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbers.Web", "Barbers.Web\Barbers.Web.csproj", "{3EC4C9DA-0B93-48A8-B61E-4AE2EF251B48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbers.Core", "Barbers.Core\Barbers.Core.csproj", "{BC252FF0-E9B8-49C3-95D9-43004C904E7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barber.Data", "Barber.Data\Barber.Data.csproj", "{A33E2996-733C-4AD0-9D7B-D26B1F63C228}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3EC4C9DA-0B93-48A8-B61E-4AE2EF251B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EC4C9DA-0B93-48A8-B61E-4AE2EF251B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EC4C9DA-0B93-48A8-B61E-4AE2EF251B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC252FF0-E9B8-49C3-95D9-43004C904E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC252FF0-E9B8-49C3-95D9-43004C904E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC252FF0-E9B8-49C3-95D9-43004C904E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC252FF0-E9B8-49C3-95D9-43004C904E7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A33E2996-733C-4AD0-9D7B-D26B1F63C228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A33E2996-733C-4AD0-9D7B-D26B1F63C228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A33E2996-733C-4AD0-9D7B-D26B1F63C228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A33E2996-733C-4AD0-9D7B-D26B1F63C228}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

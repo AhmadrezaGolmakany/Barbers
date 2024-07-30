@@ -1,3 +1,6 @@
+using Barber.Data.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace Barbers.Web
 {
     public class Program
@@ -8,6 +11,10 @@ namespace Barbers.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<BarbersContext>( options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Barbers_Connection"));
+            });
 
             var app = builder.Build();
 
