@@ -9,5 +9,9 @@ namespace Barbers.Core.Services.User
     public interface IUserService
     {
         int AddUSer(Barber.Data.Entities.User user);
+
+        bool IsExistEmail(string email);
+
+        bool IsExistUserName(string username);
     }
 }

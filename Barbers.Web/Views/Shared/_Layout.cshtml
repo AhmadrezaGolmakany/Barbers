@@ -57,8 +57,16 @@
                                 <li><a href="about.html" class="nav-link">درباره ما</a></li>
                                 <li><a href="blog.html" class="nav-link">بلاگ</a></li>
                                 <li><a href="contact.html" class="nav-link">تماس با ما</a></li>
-                                <li><a href="Register" class="nav-link">ثبت نام</a></li>
-                                <li><a href="Login" class="nav-link">ورود</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>@User.Identity.Name</li>
+                                }
+                                else
+                                {
+                                    <li><a href="Register" class="nav-link">ثبت نام</a></li>
+                                    <li><a href="Login" class="nav-link">ورود</a></li>
+                                }
+                                
                             </ul>
                         </nav>
                     </div>

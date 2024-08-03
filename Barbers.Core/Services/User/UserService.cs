@@ -23,5 +23,15 @@ namespace Barbers.Core.Services.User
             _context.SaveChanges();
             return user.userId;
         }
+
+        public bool IsExistEmail(string email)
+        {
+            return _context.Users.Any(u => u.Email == email);
+        }
+
+        public bool IsExistUserName(string username)
+        {
+            return _context.Users.Any(u=>u.UserName == username);
+        }
     }
 }
