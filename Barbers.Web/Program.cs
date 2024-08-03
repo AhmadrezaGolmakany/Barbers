@@ -1,5 +1,6 @@
 using Barber.Data.Context;
 using Barbers.Core.Services.User;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace Barbers.Web
@@ -25,6 +26,24 @@ namespace Barbers.Web
             #region IOC
 
             builder.Services.AddTransient<IUserService , UserService>();
+
+            #endregion
+
+
+            #region Authentication
+
+
+            builder.Services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                option.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(option =>
+            {
+                option.LoginPath = "/Login";
+                option.LogoutPath = "/Logout";
+                option.ExpireTimeSpan = TimeSpan.FromDays(60);
+            });
 
             #endregion
 

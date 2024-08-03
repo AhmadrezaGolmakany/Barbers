@@ -20,6 +20,8 @@ namespace Barbers.Web.Controllers
         }
 
 
+        #region Register
+
         [Route("Register")]
         public IActionResult Register()
         {
@@ -44,7 +46,7 @@ namespace Barbers.Web.Controllers
 
             if (_service.IsExistUserName(register.UserName))
             {
-                ModelState.AddModelError("UserName" , "ایمیل وارد شدع قبلا در سایت ثبت نام کرده است!");
+                ModelState.AddModelError("UserName", "ایمیل وارد شدع قبلا در سایت ثبت نام کرده است!");
                 return View(register);
             }
 
@@ -61,5 +63,25 @@ namespace Barbers.Web.Controllers
             _service.AddUSer(user);
             return Redirect("Index");
         }
+
+
+        #endregion
+
+
+
+        #region Login and Logout
+
+        [Route("Login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+
+
+        #endregion
+
+
     }
 }
