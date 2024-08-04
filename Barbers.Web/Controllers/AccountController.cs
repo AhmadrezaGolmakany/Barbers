@@ -1,7 +1,10 @@
-﻿using Barber.Data.Context;
+﻿using System.Security.Claims;
+using Barber.Data.Context;
 using Barber.Data.Entities;
 using Barbers.Core.DTOs;
 using Barbers.Core.Services.User;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using TopLearn.Core.Security;
@@ -77,8 +80,92 @@ namespace Barbers.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Route("Login")]
+        public IActionResult Login(LoginViewModel login , string returnUrl="/")
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
 
+            var user = _service.LoginUser(login);
+
+            if (user != null)
+            {
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.NameIdentifier,user.userId.ToString()),
+                    new Claim(ClaimTypes.Name , user.UserName),
+
+
+                };
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+                var properties = new AuthenticationProperties
+                {
+                    IsPersistent = login.RememberMe
+                };
+                HttpContext.SignInAsync(principal, properties);
+
+
+            }
+            else
+            {
+                ModelState.AddModelError("UserName", "کاربری با این نام کاربری یافت نشد");
+
+            }
+
+
+
+            return Redirect(returnUrl);
+        }
+
+
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/Login");
+        }
+
+
+
+
+        #endregion
+
+
+
+        #region Forgotepasseord
+
+        [Route("ForgetPassword")]
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+
+        [Route("ForgetPassword")]
+        [HttpPost]
+        public IActionResult ForgetPassword(ForgetPasswordViewModel forget)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            User user = _service.GetuserByEmail(forget.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("Email" , "کاربری با این ایمیل یافت نشد");
+            }
+            
+            _service.ChangePassword(forget.Email , forget.password);
+
+
+
+            return View(forget);
+        }
 
         #endregion
 

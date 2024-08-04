@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Barber.Data.Context;
+using Barbers.Core.DTOs;
+using TopLearn.Core.Security;
 
 namespace Barbers.Core.Services.User
 {
@@ -32,6 +34,38 @@ namespace Barbers.Core.Services.User
         public bool IsExistUserName(string username)
         {
             return _context.Users.Any(u=>u.UserName == username);
+        }
+
+        public Barber.Data.Entities.User LoginUser(LoginViewModel login)
+        {
+            string hashpass = PasswordHelper.EncodePasswordMd5(login.password);
+            return _context.Users.SingleOrDefault(u => u.UserName == login.UserName && u.password == hashpass);
+        }
+
+        public void ChangePassword(string email, string newpassword)
+        {
+            var user = GetuserByEmail(email);
+            user.password = PasswordHelper.EncodePasswordMd5(newpassword); 
+            UpdateUser(user);
+            
+
+        }
+
+        public bool ComparePassword(string oldpassword, string username)
+        {
+            string HashOldpassword = PasswordHelper.EncodePasswordMd5(oldpassword);
+            return _context.Users.Any(u => u.UserName == username && u.password == HashOldpassword);
+        }
+
+        public Barber.Data.Entities.User GetuserByEmail(string email)
+        {
+            return _context.Users.SingleOrDefault(u=>u.Email == email);
+        }
+
+        public void UpdateUser(Barber.Data.Entities.User user)
+        {
+            _context.Users.Update(user);
+            _context.SaveChanges();
         }
     }
 }

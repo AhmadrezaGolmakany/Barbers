@@ -2,7 +2,7 @@
 <html lang="fa">
 
 <head>
-    <title>باربرز || صفحه اصلی</title>
+    <title>باربرز || @ViewData["Title"]</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -59,7 +59,8 @@
                                 <li><a href="contact.html" class="nav-link">تماس با ما</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <li>@User.Identity.Name</li>
+                                    <li style="color: white" >خوش آمدید @User.Identity.Name</li>
+                                    <li><a href="/Logout" >خروج</a></li>
                                 }
                                 else
                                 {

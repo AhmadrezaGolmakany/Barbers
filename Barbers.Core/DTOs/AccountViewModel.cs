@@ -35,7 +35,7 @@ namespace Barbers.Core.DTOs
         public string RePassword { get; set; }
     }
 
-    public class Login
+    public class LoginViewModel
     {
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
@@ -48,5 +48,21 @@ namespace Barbers.Core.DTOs
 
         [Display(Name = "مرا به خاطر بسپار")]
         public bool RememberMe { get; set; }
+    }
+
+    public class ForgetPasswordViewModel
+    {
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
+        [EmailAddress(ErrorMessage = "ایمیل وارد شده معتبر نیست")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(200, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
+        public string password { get; set; }
+
+
+        [Compare("password", ErrorMessage = "کلمه عبور مغایرت دارد")]
+        public string RePassword { get; set; }
     }
 }
