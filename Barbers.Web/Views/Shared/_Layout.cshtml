@@ -59,7 +59,7 @@
                                 <li><a href="contact.html" class="nav-link">تماس با ما</a></li>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <li style="color: white" >خوش آمدید @User.Identity.Name</li>
+                                    <li style="color: white"><a class="nav-link" href="/UserPanel">خوش آمدید @User.Identity.Name</a></li>
                                     <li><a href="/Logout" >خروج</a></li>
                                 }
                                 else

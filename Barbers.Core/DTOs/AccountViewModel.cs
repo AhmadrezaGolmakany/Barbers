@@ -30,6 +30,7 @@ namespace Barbers.Core.DTOs
         [MaxLength(200, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
         public string password { get; set; }
 
+        public DateTime JoinDate { get; set; }
 
         [Compare("password", ErrorMessage = "کلمه عبور مغایرت دارد")]
         public string RePassword { get; set; }

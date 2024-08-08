@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Barbers.Core.Convertors
+@model Barbers.Core.DTOs.InfomationUserViewModel
+@{
+    ViewData["Title"] = "پنل کاربری" + User.Identity.Name;
+}
+<div class="container  ">
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb ">
+            <li class="breadcrumb-item"><a href="/">باربرز</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> پنل کاربری </li>
+        </ul>
+    </nav>
+</div>
+<main>
+    <div class="container">
+        <div class="user-account">
+            <div class="row">
+                <partial name="_SidBar" />
+                <div class="col-md-9 col-sm-8 col-xs-12">
+                    <section class="user-account-content">
+                        <header><h1> داشبورد </h1></header>
+                        <div class="inner">
+                            <div class="account-information">
+                                <h3> اطلاعات کاربری </h3>
+                                <ul class="list-unstyled" >
+                                    
+                                    <li> <i></i> نام کاربری : @Model.UserName  </li>
+                                    <li> <i></i> ایمیل : @Model.Email  </li>
+                                    <li> <i></i> تاریخ عضویت : @Model.Joindate.ToShamsi()  </li>
+                                    <li> <i></i> موجودی حساب: تومان </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

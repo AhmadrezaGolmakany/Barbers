@@ -67,5 +67,21 @@ namespace Barbers.Core.Services.User
             _context.Users.Update(user);
             _context.SaveChanges();
         }
+
+        public Barber.Data.Entities.User GetUserByUserName(string username)
+        {
+            return _context.Users.SingleOrDefault(u => u.UserName == username);
+        }
+
+        public InfomationUserViewModel getInformationUser(string username)
+        {
+            var user = GetUserByUserName(username);
+
+            InfomationUserViewModel model = new InfomationUserViewModel();
+            model.Email = user.Email;
+            model.UserName = user.UserName;
+            model.Joindate = user.JoinDate;
+            return model;
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿@using Barbers.Core.Convertors
+@using Barbers.Core.DTOs
+@using Barbers.Core.Services.User
+@inject IUserService _UserService
+
+@{
+    InfomationUserViewModel user = _UserService.getInformationUser(User.Identity.Name);
+}
+
+
+<div class="col-md-3 col-sm-4 col-xs-12">
+    <aside>
+
+        <div class="avatar-layer">
+          
+            <div class="detail">
+                <span>  </span>
+                <span> عضویت : @user.Joindate.ToShamsi()   </span>
+            </div>
+        </div>
+
+        <section>
+            <header><h3> میز کار </h3></header>
+            <div class="inner">
+                <ul>
+                    <li><a href="/UserPanel"> مشاهده حساب کابری </a></li>
+                    <li><a href="/UserPanel/EditeProfile"> ویرایش حساب کابری </a></li>
+                    <li><a href="/UserPanel/ChangePassword"> تغییر رمز عبور </a></li>
+                    <li><a href="/UserPanel/Myorders"> فاکتور های من </a></li>
+                    <li><a href="/UserPanel/Wallet"> کیف پول شما </a></li>
+                    <li><a href=""> تنظیمات حساب کاربری </a></li>
+                    
+                    <li><a href="/LogOut"> خروج از حساب کاربری </a></li>
+                </ul>
+            </div>
+        </section>
+    </aside>
+</div>

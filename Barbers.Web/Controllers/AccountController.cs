@@ -59,12 +59,13 @@ namespace Barbers.Web.Controllers
                 Email = register.Email,
                 password = PasswordHelper.EncodePasswordMd5(register.password),
                 Phone = register.Phone,
-                UserName = register.UserName
+                UserName = register.UserName,
+                JoinDate = DateTime.Now
 
             };
 
             _service.AddUSer(user);
-            return Redirect("Index");
+            return Redirect("/Login");
         }
 
 
