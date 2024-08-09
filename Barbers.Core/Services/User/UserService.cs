@@ -83,5 +83,27 @@ namespace Barbers.Core.Services.User
             model.Joindate = user.JoinDate;
             return model;
         }
+
+        public EditeProfileUserViewModel GetDataForEdite(string username)
+        {
+            return _context.Users.Where(u=>u.UserName == username)
+                .Select(e=> new EditeProfileUserViewModel
+                {
+                    UserName = e.UserName,
+                    Email = e.Email,
+                    FullName = e.FullName,
+                    Phone = e.Phone
+                }).Single();
+        }
+
+        public void EditeProfile(EditeProfileUserViewModel model, string username)
+        {
+            var user = GetUserByUserName(username);
+            user.UserName = model.UserName;
+            user.Email= model.Email;
+            user.FullName = model.FullName;
+            user.Phone = model.Phone;
+            UpdateUser(user);
+        }
     }
 }

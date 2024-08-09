@@ -18,9 +18,7 @@ namespace Barbers.Core.Services.User
 
         Barber.Data.Entities.User LoginUser(LoginViewModel login);
 
-        void ChangePassword(string email, string newpassword);
-
-        bool ComparePassword(string oldpassword, string username);
+       
 
 
         Barber.Data.Entities.User GetuserByEmail(string email);
@@ -36,6 +34,11 @@ namespace Barbers.Core.Services.User
         #region UserPanel
 
         InfomationUserViewModel getInformationUser( string username );
+        EditeProfileUserViewModel GetDataForEdite(string username);
+        void EditeProfile(EditeProfileUserViewModel model , string username);
+        void ChangePassword(string email, string newpassword);
+
+        bool ComparePassword(string oldpassword, string username);
 
         #endregion
 

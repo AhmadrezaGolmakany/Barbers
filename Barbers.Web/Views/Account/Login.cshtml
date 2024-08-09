@@ -12,11 +12,17 @@
                 <h2>ورود به باربرز</h2>
 
             </div>
+            
         </div>
         <div class="row ">
+            @if (ViewBag.EditeProfile == true)
+            {
+                <div class="alert alert-warning">
+                    بدلیل ویرایش اطلاعات و بارگزاری اطلاعات جدید لطفا مجددا وارد شوید!!!
+                </div>
+            }
             <div class="col-lg-8 mb-5">
                 <form asp-action="Login" method="post">
-
                     <div class="form-group row">
                         <div class="col-md-12 mb-4 mb-lg-0">
                             <input asp-for="UserName" type="text" class="form-control" placeholder="نام کاربری">
@@ -36,7 +42,7 @@
                         </div>
                     </div>
                     <div class="remember-me">
-                        <label><input asp-for="RememberMe" type="checkbox" name="">  مرا بخاطر بسپار </label>
+                        <label><input asp-for="RememberMe" type="checkbox" name=""> مرا بخاطر بسپار </label>
                     </div>
 
 

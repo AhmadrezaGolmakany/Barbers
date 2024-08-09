@@ -76,8 +76,10 @@ namespace Barbers.Web.Controllers
         #region Login and Logout
 
         [Route("Login")]
-        public IActionResult Login()
+        public IActionResult Login(bool EditeProfile = false)
         {
+            ViewBag.EditeProfile = EditeProfile;
+
             return View();
         }
 
@@ -98,7 +100,9 @@ namespace Barbers.Web.Controllers
                 var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.NameIdentifier,user.userId.ToString()),
+                    new Claim(ClaimTypes.Email , user.Email),
                     new Claim(ClaimTypes.Name , user.UserName),
+                   
 
 
                 };
@@ -109,7 +113,7 @@ namespace Barbers.Web.Controllers
                     IsPersistent = login.RememberMe
                 };
                 HttpContext.SignInAsync(principal, properties);
-
+                return Redirect(returnUrl);
 
             }
             else
@@ -118,9 +122,9 @@ namespace Barbers.Web.Controllers
 
             }
 
+            return View(login);
 
 
-            return Redirect(returnUrl);
         }
 
 
@@ -165,7 +169,7 @@ namespace Barbers.Web.Controllers
 
 
 
-            return View(forget);
+            return Redirect("/");
         }
 
         #endregion
