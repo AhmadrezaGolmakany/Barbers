@@ -3,11 +3,13 @@ using Barbers.Core.DTOs;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Barbers.Web.Areas.UserPanel.Controllers
 {
     [Area("UserPanel")]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IUserService _userService;

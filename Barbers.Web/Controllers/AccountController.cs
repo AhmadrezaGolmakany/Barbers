@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using Barber.Data.Context;
-using Barber.Data.Entities;
+using Barber.Data.Entities.User;
 using Barbers.Core.DTOs;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Authentication;
@@ -53,7 +53,7 @@ namespace Barbers.Web.Controllers
                 return View(register);
             }
 
-            Barber.Data.Entities.User user = new User()
+            User user = new User()
             {
                 FullName = register.FullName,
                 Email = register.Email,

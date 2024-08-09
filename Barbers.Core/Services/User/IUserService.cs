@@ -3,33 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Barber.Data.Entities.Wallet;
 using Barbers.Core.DTOs;
 
 namespace Barbers.Core.Services.User
 {
     public interface IUserService
     {
-        int AddUSer(Barber.Data.Entities.User user);
+        #region Account
+
+        int AddUSer(Barber.Data.Entities.User.User user);
 
         bool IsExistEmail(string email);
 
         bool IsExistUserName(string username);
 
 
-        Barber.Data.Entities.User LoginUser(LoginViewModel login);
+        Barber.Data.Entities.User.User LoginUser(LoginViewModel login);
 
-       
-
-
-        Barber.Data.Entities.User GetuserByEmail(string email);
-
-        void UpdateUser(Barber.Data.Entities.User user);
-
-        Barber.Data.Entities.User GetUserByUserName(string username);
+        int GetUserIdByUsername(string username);
 
 
+        Barber.Data.Entities.User.User GetuserByEmail(string email);
 
+        void UpdateUser(Barber.Data.Entities.User.User user);
 
+        Barber.Data.Entities.User.User GetUserByUserName(string username);
+
+        #endregion
 
         #region UserPanel
 
@@ -39,6 +40,23 @@ namespace Barbers.Core.Services.User
         void ChangePassword(string email, string newpassword);
 
         bool ComparePassword(string oldpassword, string username);
+
+        #endregion
+
+
+        #region Wallet
+
+        int BalanceWallet(string username);
+
+        List<WalletViewModel> GetUserWallet(string username);
+        int ChargeWallet(string username  , string description, int amount, bool ispay = false);
+        int AddWallet(Wallet wallet);
+
+        Wallet GetWalletByWalletId(int walletId);
+
+        void UpdateWallet(Wallet wallet);
+
+
 
         #endregion
 

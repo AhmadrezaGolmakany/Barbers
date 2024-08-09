@@ -4,6 +4,7 @@ using Barber.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Barber.Data.Migrations
 {
     [DbContext(typeof(BarbersContext))]
-    partial class BarbersContextModelSnapshot : ModelSnapshot
+    [Migration("20240809171730_edite-tbl-wallettype")]
+    partial class editetblwallettype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,12 +94,15 @@ namespace Barber.Data.Migrations
                     b.Property<int>("TypeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("WalletTypeTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("WalletId");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("WalletTypeTypeId");
 
                     b.HasIndex("userId");
 
@@ -121,7 +127,7 @@ namespace Barber.Data.Migrations
                 {
                     b.HasOne("Barber.Data.Entities.Wallet.WalletType", "WalletType")
                         .WithMany("Wallets")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("WalletTypeTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

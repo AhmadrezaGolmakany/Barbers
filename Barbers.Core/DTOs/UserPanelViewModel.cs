@@ -15,6 +15,8 @@ namespace Barbers.Core.DTOs
 
         public DateTime Joindate { get; set; }
 
+        public int Wallet { get; set; }
+
         
     }
 
