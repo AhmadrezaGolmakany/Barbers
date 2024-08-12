@@ -61,5 +61,13 @@ namespace Barbers.Core.Services.User
         #endregion
 
 
+
+        #region Admin
+
+        UserForAdminViewModel getSUserForAdmin(int pageId = 1 , string filteremail ="" , string filterusername = "" );
+
+        #endregion
+
+
     }
 }

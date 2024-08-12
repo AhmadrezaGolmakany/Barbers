@@ -126,6 +126,33 @@ namespace Barbers.Core.Services.User
             _context.SaveChanges();
         }
 
+        public UserForAdminViewModel getSUserForAdmin(int pageId = 1, string filteremail = "", string filterusername = "")
+        {
+            IQueryable<Barber.Data.Entities.User.User> result = _context.Users;
+
+            if (!string.IsNullOrEmpty(filterusername))
+            {
+                result = result.Where(u => u.UserName.Contains(filterusername));
+            }
+
+            if (!string.IsNullOrEmpty(filteremail))
+            {
+                result = result.Where(u => u.Email.Contains(filteremail));
+            }
+
+            int take = 20;
+            int skip = (pageId - 1) * take;
+
+            UserForAdminViewModel list = new UserForAdminViewModel();
+
+            list.CurrentPage = pageId;
+            list.PageCount = result.Count() / take;
+
+            list.users = result.OrderBy(r => r.UserName).Skip(skip).Take(take).ToList();
+
+            return list;
+        }
+
         public Barber.Data.Entities.User.User GetuserByEmail(string email)
         {
             return _context.Users.SingleOrDefault(u=>u.Email == email);

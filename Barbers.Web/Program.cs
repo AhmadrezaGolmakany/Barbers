@@ -15,6 +15,9 @@ namespace Barbers.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddRazorPages();
+
+
             #region DbContext
 
             builder.Services.AddDbContext<BarbersContext>(options =>
@@ -26,7 +29,7 @@ namespace Barbers.Web
 
             #region IOC
 
-            builder.Services.AddTransient<IUserService , UserService>();
+            builder.Services.AddTransient<IUserService, UserService>();
 
             #endregion
 
@@ -66,19 +69,23 @@ namespace Barbers.Web
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}"
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}"
             );
+
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
-                endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
+
+           
 
 
 
