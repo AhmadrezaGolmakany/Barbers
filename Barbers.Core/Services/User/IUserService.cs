@@ -66,6 +66,8 @@ namespace Barbers.Core.Services.User
 
         UserForAdminViewModel getSUserForAdmin(int pageId = 1 , string filteremail ="" , string filterusername = "" );
 
+        int AddUserForAdmin(CreateUserForAdmin create);
+
         #endregion
 
 

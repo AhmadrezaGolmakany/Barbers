@@ -153,6 +153,20 @@ namespace Barbers.Core.Services.User
             return list;
         }
 
+        public int AddUserForAdmin(CreateUserForAdmin create)
+        {
+            Barber.Data.Entities.User.User user = new Barber.Data.Entities.User.User();
+            user.UserName = create.UserName;
+            user.Email = create.Email;
+            user.password = PasswordHelper.EncodePasswordMd5(create.Password);
+            user.Phone = create.Phone;
+            user.FullName = create.FullName;
+            user.JoinDate = DateTime.Now;
+
+
+            return AddUSer(user);
+        }
+
         public Barber.Data.Entities.User.User GetuserByEmail(string email)
         {
             return _context.Users.SingleOrDefault(u=>u.Email == email);

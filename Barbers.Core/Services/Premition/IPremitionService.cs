@@ -14,6 +14,8 @@ namespace Barbers.Core.Services.Premition
 
         List<Role> GetAllRoles();
 
+        void AddRoleUser(List<int> RoleId, int userId);
+
 
         #endregion
     }

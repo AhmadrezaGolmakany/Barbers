@@ -21,5 +21,19 @@ namespace Barbers.Core.Services.Premition
         {
             return _context.Roles.ToList();
         }
+
+        public void AddRoleUser(List<int> RoleId, int userId)
+        {
+            foreach (var roleId in RoleId)
+            {
+                _context.UserRoles.Add(new UserRole
+                {
+                    RoleId = roleId,
+                    UserId = userId,
+                });
+            }
+
+            _context.SaveChanges();
+        }
     }
 }

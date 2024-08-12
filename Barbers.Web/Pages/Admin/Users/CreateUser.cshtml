@@ -1,6 +1,13 @@
 ﻿@page
+@using Barber.Data.Entities.User
+@using Barbers.Core.Services.Premition
 @model Barbers.Web.Pages.Admin.Users.CreateUserModel
+@inject IPremitionService _PremitionService
 @{
+    ViewData["Title"] = "افزودن کاربر";
+
+
+    List<Role> role = _PremitionService.GetAllRoles();
 }
 
 <div class="row">
@@ -20,30 +27,40 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <div class="form-group">
+                        <label> نام و نام خانوادگی</label>
+                        <input type="text" asp-for="Create.FullName" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label>نام کاربری</label>
-                        <input type="text" asp-for="CreateUserViewModel.UserName" class="form-control">
+                        <input type="text" asp-for="Create.UserName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label> تلفن همراه</label>
+                        <input type="text" asp-for="Create.Phone" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>ایمیل</label>
-                        <input type="email" asp-for="CreateUserViewModel.Email" class="form-control">
+                        <input type="email" asp-for="Create.Email" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>کلمه عبور</label>
-                        <input type="text" asp-for="CreateUserViewModel.Password" class="form-control">
+                        <input type="text" asp-for="Create.Password" class="form-control">
                     </div>
+
+                    
                     <div class="form-group">
                         <label>انتخاب نقش کاربر</label>
                         @foreach (var item in role)
                         {
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="SelectedRoles" value="@item.RoleId">@item.RorleTitel
+                                    <input type="checkbox" name="selectedrole" value="@item.RoleId">@item.RorleTitel
                                 </label>
                             </div>
                         }
 
                     </div>
-                    <input type="submit" value="ذخیره اطلاعات" class="btn btn-success" />
+                    <input type="submit" value="ذخیره اطلاعات" class="btn btn-success"/>
                 </div>
                 <!-- /.panel-body -->
             </div>
