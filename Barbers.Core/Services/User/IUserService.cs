@@ -30,6 +30,8 @@ namespace Barbers.Core.Services.User
 
         Barber.Data.Entities.User.User GetUserByUserName(string username);
 
+        Barber.Data.Entities.User.User GetUserbyUserId(int userId);
+
         #endregion
 
         #region UserPanel
@@ -67,6 +69,10 @@ namespace Barbers.Core.Services.User
         UserForAdminViewModel getSUserForAdmin(int pageId = 1 , string filteremail ="" , string filterusername = "" );
 
         int AddUserForAdmin(CreateUserForAdmin create);
+
+        EditeUserFromAdminViewModel getUserForEdite(int userId);
+
+        void EditeUserFromAdmin(EditeUserFromAdminViewModel edite);
 
         #endregion
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Barber.Data.Context;
+using Barber.Data.Entities.User;
 using Barber.Data.Entities.Wallet;
 using Barbers.Core.DTOs;
 using TopLearn.Core.Security;
@@ -162,9 +163,39 @@ namespace Barbers.Core.Services.User
             user.Phone = create.Phone;
             user.FullName = create.FullName;
             user.JoinDate = DateTime.Now;
+           
 
 
             return AddUSer(user);
+        }
+
+        public EditeUserFromAdminViewModel getUserForEdite(int userId)
+        {
+           return _context.Users.Where(u => u.userId == userId)
+                .Select(u=> new EditeUserFromAdminViewModel()
+                {
+                    UserId = u.userId,
+                    Phone = u.Phone,
+                    Email = u.Email,
+                    FullName = u.FullName,
+                    UserName = u.UserName,
+                    UserRole = u.userRoles.Select(r=>r.RoleId).ToList()
+                }).Single();
+
+        }
+
+        public void EditeUserFromAdmin(EditeUserFromAdminViewModel edite)
+        {
+            Barber.Data.Entities.User.User user = GetUserbyUserId(edite.UserId);
+
+            if (!string.IsNullOrEmpty(edite.Password))
+            {
+                user.password = PasswordHelper.EncodePasswordMd5(edite.Password);
+            }
+
+            _context.Users.Update(user);
+            _context.SaveChanges();
+
         }
 
         public Barber.Data.Entities.User.User GetuserByEmail(string email)
@@ -181,6 +212,11 @@ namespace Barbers.Core.Services.User
         public Barber.Data.Entities.User.User GetUserByUserName(string username)
         {
             return _context.Users.SingleOrDefault(u => u.UserName == username);
+        }
+
+        public Barber.Data.Entities.User.User GetUserbyUserId(int userId)
+        {
+            return _context.Users.Find(userId);
         }
 
         public InfomationUserViewModel getInformationUser(string username)

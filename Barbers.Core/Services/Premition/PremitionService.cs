@@ -35,5 +35,12 @@ namespace Barbers.Core.Services.Premition
 
             _context.SaveChanges();
         }
+
+        public void EditeUserRole(int userId, List<int> RoleId)
+        {
+            _context.UserRoles.Where(r=>r.UserId == userId).ToList().ForEach(r=>_context.UserRoles.Remove(r));
+
+            AddRoleUser(RoleId , userId );
+        }
     }
 }

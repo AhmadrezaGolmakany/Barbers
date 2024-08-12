@@ -41,6 +41,9 @@ namespace Barber.Data.Entities.User
         #region Realation
 
         public List<Wallet.Wallet> Wallets { get; set; }
+        public virtual List<UserRole> userRoles { get; set; }
+        
+
 
         #endregion
 
