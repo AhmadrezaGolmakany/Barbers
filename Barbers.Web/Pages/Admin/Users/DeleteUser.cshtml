@@ -1,0 +1,41 @@
+﻿@page "{id}"
+@using Barbers.Core.Convertors
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Barbers.Web.Pages.Admin.Users.DeleteUserModel
+@{
+}
+
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            حذف کاربر
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                <input type="hidden" name="UserId" value="@ViewData["UserId"].ToString()" />
+
+                <dl class="dl-horizontal">
+                    
+                    <dt>نام ونام خانوادگی : </dt>
+                    <dd>@Model.UserViewModel.FullName</dd>
+                    <dt>نام کاربری : </dt>
+                    <dd>@Model.UserViewModel.UserName</dd>
+                    <dt>ایمیل : </dt>
+                    <dd>@Model.UserViewModel.Email</dd>
+                    <dt>تلفن همراه : </dt>
+                    <dd>@Model.UserViewModel.Phone</dd>
+                    <dt>موجودی کیف پول : </dt>
+                    <dd>@Model.UserViewModel.Wallet</dd>
+                    <dt>تاریخ عضویت : </dt>
+                    <dd>@Model.UserViewModel.Joindate.ToShamsi()</dd>
+                    <dt></dt>
+                    <dd>
+                        <input type="submit" value="حذف" class="btn btn-danger"/>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>

@@ -73,6 +73,15 @@ namespace Barbers.Core.Services.User
         EditeUserFromAdminViewModel getUserForEdite(int userId);
 
         void EditeUserFromAdmin(EditeUserFromAdminViewModel edite);
+        UserForAdminViewModel GetDeleteUser(int pageId = 1, string filteremail = "", string filterusername = "");
+
+        void DeleteUser(int userId);
+
+
+        InfomationUserViewModel getInformationUserForAdmin(int id);
+
+
+
 
         #endregion
 

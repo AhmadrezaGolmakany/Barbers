@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Barber.Data.Context;
 using Barber.Data.Entities.User;
 using Barber.Data.Entities.Wallet;
 using Barbers.Core.DTOs;
+using Microsoft.EntityFrameworkCore;
 using TopLearn.Core.Security;
 
 namespace Barbers.Core.Services.User
@@ -197,6 +199,59 @@ namespace Barbers.Core.Services.User
             _context.SaveChanges();
 
         }
+
+        public UserForAdminViewModel GetDeleteUser(int pageId = 1, string filteremail = "", string filterusername = "")
+        {
+            IQueryable<Barber.Data.Entities.User.User> result = _context.Users.IgnoreQueryFilters().Where(u=>u.IsDelete == true );
+
+            if (!string.IsNullOrEmpty(filterusername))
+            {
+                result = result.Where(u => u.UserName.Contains(filterusername));
+            }
+
+            if (!string.IsNullOrEmpty(filteremail))
+            {
+                result = result.Where(u => u.Email.Contains(filteremail));
+            }
+
+            int take = 20;
+            int skip = (pageId - 1) * take;
+
+            UserForAdminViewModel list = new UserForAdminViewModel();
+
+            list.CurrentPage = pageId;
+            list.PageCount = result.Count() / take;
+
+            list.users = result.OrderBy(r => r.UserName).Skip(skip).Take(take).ToList();
+
+            return list;
+        }
+
+        public void DeleteUser(int userId)
+        {
+            Barber.Data.Entities.User.User user = GetUserbyUserId(userId);
+            user.IsDelete = true;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
+        public InfomationUserViewModel getInformationUserForAdmin(int id)
+        {
+            Barber.Data.Entities.User.User user = GetUserbyUserId(id);
+
+            InfomationUserViewModel model = new InfomationUserViewModel();
+            model.Email = user.Email;
+            model.FullName = user.FullName;
+            model.Phone = user.Phone;
+            model.UserName = user.UserName;
+            model.Joindate = user.JoinDate;
+            model.Wallet = BalanceWallet(user.UserName);
+            return model;
+
+        }
+
+      
+        
 
         public Barber.Data.Entities.User.User GetuserByEmail(string email)
         {
