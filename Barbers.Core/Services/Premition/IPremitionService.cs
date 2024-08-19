@@ -19,6 +19,13 @@ namespace Barbers.Core.Services.Premition
 
         void EditeUserRole(int userId , List<int> RoleId);
 
+        int AddRoel(Role role);
+
+
+        Role GetRoleByRoleId(int roleId);
+        void UpdateRole(Role role);
+
+        void DeleteRole(Role role);
 
         #endregion
     }

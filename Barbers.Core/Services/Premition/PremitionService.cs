@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Barber.Data.Context;
+﻿using Barber.Data.Context;
 using Barber.Data.Entities.User;
 
 namespace Barbers.Core.Services.Premition
@@ -41,6 +36,32 @@ namespace Barbers.Core.Services.Premition
             _context.UserRoles.Where(r=>r.UserId == userId).ToList().ForEach(r=>_context.UserRoles.Remove(r));
 
             AddRoleUser(RoleId , userId );
+        }
+
+        public int AddRoel(Role role)
+        {
+            _context.Roles.Add(role);
+            _context.SaveChanges();
+            return role.RoleId;
+        }
+
+        public Role GetRoleByRoleId(int roleId)
+        {
+            return _context.Roles.Find(roleId);
+        }
+
+        public void UpdateRole(Role role)
+        {
+            _context.Update(role);
+            _context.SaveChanges();
+        }
+
+        public void DeleteRole(Role role)
+        {
+
+            role.IsDelete = true;
+            UpdateRole(role);
+
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿@page "{id}"
+@model Barbers.Web.Pages.Admin.Roles.DeleteRoleModel
+@{
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">حذف نقش</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="container alert alert-danger">
+    <form method="post">
+        <input type="hidden" asp-for="role.RoleId" />
+        <input type="hidden" asp-for="role.RorleTitel" />
+        <h2>آیا از حذف نقش "@Model.role.RorleTitel" مطمئن هستید </h2>
+        <p>
+            <input type="submit" value="حذف کن" class="btn btn-outline btn-danger" />
+            <a asp-page="Index" class="btn btn-outline btn-info">انصراف</a>
+        </p>
+    </form>
+</div>

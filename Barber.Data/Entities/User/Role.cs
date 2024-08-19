@@ -26,7 +26,7 @@ namespace Barber.Data.Entities.User
 
         #region relation
 
-        public List<UserRole> UserRoles { get; set; }
+        public static  List<UserRole> userroles { get; set; }
 
         #endregion
 
