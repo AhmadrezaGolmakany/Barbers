@@ -28,5 +28,24 @@ namespace Barbers.Core.Services.Premition
         void DeleteRole(Role role);
 
         #endregion
+
+
+        #region Premition
+
+       List<Barber.Data.Entities.Premition.Premitions> GetAllPremitions();
+
+        void AddPremition(int roleId , List<int> selectedpremition);
+
+        List<int> PermissionRoles(int roleId);
+
+        void UpdatePemissions(int roleId , List<int> premition);
+
+
+        bool CheckPermission(int permissionId, string userName);
+
+   
+
+
+        #endregion
     }
 }

@@ -2,6 +2,7 @@
 using Barber.Data.Context;
 using Barber.Data.Entities.User;
 using Barbers.Core.DTOs;
+using Barbers.Core.Services.Premition;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -15,11 +16,13 @@ namespace Barbers.Web.Controllers
     {
         private readonly BarbersContext _context;
         private IUserService _service;
+        private readonly IPremitionService _premitionService;
 
-        public AccountController(BarbersContext context, IUserService service)
+        public AccountController(BarbersContext context, IUserService service, IPremitionService premitionService)
         {
             _context = context;
             _service = service;
+            _premitionService = premitionService;
         }
 
 
@@ -53,6 +56,10 @@ namespace Barbers.Web.Controllers
                 return View(register);
             }
 
+
+
+
+
             User user = new User()
             {
                 FullName = register.FullName,
@@ -62,9 +69,20 @@ namespace Barbers.Web.Controllers
                 UserName = register.UserName,
                 JoinDate = DateTime.Now
 
+
+                
+                
+
+
             };
 
-            _service.AddUSer(user);
+            
+
+
+
+
+
+                _service.AddUSer(user);
             return Redirect("/Login");
         }
 
@@ -85,7 +103,7 @@ namespace Barbers.Web.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public IActionResult Login(LoginViewModel login , string returnUrl="/")
+        public IActionResult Login(LoginViewModel login, string returnUrl = "/")
         {
             if (!ModelState.IsValid)
             {
@@ -95,6 +113,8 @@ namespace Barbers.Web.Controllers
 
             var user = _service.LoginUser(login);
 
+
+
             if (user != null)
             {
                 var claims = new List<Claim>()
@@ -102,7 +122,7 @@ namespace Barbers.Web.Controllers
                     new Claim(ClaimTypes.NameIdentifier,user.userId.ToString()),
                     new Claim(ClaimTypes.Email , user.Email),
                     new Claim(ClaimTypes.Name , user.UserName),
-                   
+
 
 
                 };
@@ -162,10 +182,10 @@ namespace Barbers.Web.Controllers
             User user = _service.GetuserByEmail(forget.Email);
             if (user == null)
             {
-                ModelState.AddModelError("Email" , "کاربری با این ایمیل یافت نشد");
+                ModelState.AddModelError("Email", "کاربری با این ایمیل یافت نشد");
             }
-            
-            _service.ChangePassword(forget.Email , forget.password);
+
+            _service.ChangePassword(forget.Email, forget.password);
 
 
 

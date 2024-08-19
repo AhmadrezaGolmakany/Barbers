@@ -1,10 +1,13 @@
 using Barbers.Core.DTOs;
+using Barbers.Core.Security;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Users
 {
+    [PermitionChecker(3)]
+
     public class DeleteUserModel : PageModel
     {
         private readonly IUserService _userService;

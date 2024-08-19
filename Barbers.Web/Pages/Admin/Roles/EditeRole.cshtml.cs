@@ -1,10 +1,13 @@
 using System.Reflection;
+using Barbers.Core.Security;
 using Barbers.Core.Services.Premition;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Roles
 {
+    [PermitionChecker(7)]
+
     public class EditeRoleModel : PageModel
     {
         private readonly IPremitionService _premitionService;
@@ -20,9 +23,12 @@ namespace Barbers.Web.Pages.Admin.Roles
         public void OnGet(int id )
         {
             role = _premitionService.GetRoleByRoleId(id);
+            ViewData["Premitiom"] = _premitionService.GetAllPremitions();
+            ViewData["SelectedPermissions"] = _premitionService.PermissionRoles(id);
+
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(List<int> SelectedPermission)
         {
             if (!ModelState.IsValid)
             {
@@ -30,7 +36,8 @@ namespace Barbers.Web.Pages.Admin.Roles
             }
 
             _premitionService.UpdateRole(role);
-            return RedirectToPage("/index");
+            _premitionService.UpdatePemissions(role.RoleId , SelectedPermission);
+            return RedirectToPage("/admin/roles/index");
         }
     }
 }

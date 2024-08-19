@@ -1,10 +1,13 @@
 using Barbers.Core.DTOs;
+using Barbers.Core.Security;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Users
 {
+    [PermitionChecker(1)]
+
     public class IndexModel : PageModel
     {
         private readonly IUserService _userService;

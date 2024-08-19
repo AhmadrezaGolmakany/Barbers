@@ -1,9 +1,12 @@
+using Barbers.Core.Security;
 using Barbers.Core.Services.Premition;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Role
 {
+    [PermitionChecker(5)]
+
     public class IndexModel : PageModel
     {
         private readonly IPremitionService _premitionService;

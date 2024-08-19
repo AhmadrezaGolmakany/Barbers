@@ -1,9 +1,12 @@
+using Barbers.Core.Security;
 using Barbers.Core.Services.Premition;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Roles
 {
+    [PermitionChecker(8)]
+
     public class DeleteRoleModel : PageModel
     {
         private readonly IPremitionService _premitionService;

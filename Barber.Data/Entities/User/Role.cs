@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Barber.Data.Entities.Premition;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -27,6 +28,9 @@ namespace Barber.Data.Entities.User
         #region relation
 
         public static  List<UserRole> userroles { get; set; }
+        public static List<RolePremition> rolePremitions { get; set; }
+
+        public static List<Premition.Premitions> premitions { get; set; }
 
         #endregion
 

@@ -1,6 +1,9 @@
 ﻿@page "{id}"
+@using Barber.Data.Entities.Premition
 @model Barbers.Web.Pages.Admin.Roles.EditeRoleModel
 @{
+    List<Premitions> permissions = ViewData["Premitiom"] as List<Premitions>;
+
 }
 
 <div class="row">
@@ -32,6 +35,54 @@
                 </div>
                 <!-- /.panel-body -->
             </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    دسترسی ها
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    @{
+                        List<int> SelectedPermission = ViewData["SelectedPermissions"] as List<int>;
+                    }
+                    <ul>
+                        @foreach (var permission in permissions.Where(p => p.ParentId == null))
+                        {
+                            <li>
+                                <input type="checkbox" name="SelectedPermission" @((SelectedPermission.Any(p => p == permission.PremitionId) ? "checked" : "")) value="@permission.PremitionId" /> @permission.title
+
+                                @if (permissions.Any(p => p.ParentId == permission.ParentId))
+                                {
+                                    <ul>
+                                        @foreach (var sub in permissions.Where(p => p.ParentId == permission.PremitionId))
+                                        {
+                                            <li>
+                                                <input type="checkbox" name="SelectedPermission" @((SelectedPermission.Any(p => p == sub.PremitionId) ? "checked" : "")) value="@sub.PremitionId" /> @sub.title
+                                                @if (permissions.Any(p => p.ParentId == sub.ParentId))
+                                                {
+                                                    <ul>
+
+                                                        @foreach (var sub2 in permissions.Where(p => p.ParentId == sub.PremitionId))
+                                                        {
+                                                            <li>
+                                                                <input type="checkbox" name="SelectedPermission" @((SelectedPermission.Any(p => p == sub2.PremitionId) ? "checked" : "")) value="@sub2.PremitionId" /> @sub2.title
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
         </div>
 
 

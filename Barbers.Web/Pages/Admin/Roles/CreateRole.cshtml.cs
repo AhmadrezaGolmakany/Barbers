@@ -1,9 +1,12 @@
+using Barbers.Core.Security;
 using Barbers.Core.Services.Premition;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Role
 {
+    [PermitionChecker(6)]
+
     public class CreateRoleModel : PageModel
     {
         private readonly IPremitionService _premitionService;
@@ -19,18 +22,20 @@ namespace Barbers.Web.Pages.Admin.Role
 
         public void OnGet()
         {
+            ViewData["Premitiom"] = _premitionService.GetAllPremitions();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(List<int> SelectedPermission)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            
 
             Role.IsDelete = false;
            int roleid = _premitionService.AddRoel(Role);
+
+
+
+            _premitionService.AddPremition(roleid , SelectedPermission);
            return Redirect("/Admin/Roles/Index");
         }
     }

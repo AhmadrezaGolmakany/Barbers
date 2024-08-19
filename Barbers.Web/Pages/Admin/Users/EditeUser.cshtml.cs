@@ -1,4 +1,5 @@
 using Barbers.Core.DTOs;
+using Barbers.Core.Security;
 using Barbers.Core.Services.Premition;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Users
 {
+    [PermitionChecker(4)]
+
     public class EditeUserModel : PageModel
     {
         private readonly IUserService _userService;

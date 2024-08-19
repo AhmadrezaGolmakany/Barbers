@@ -1,11 +1,14 @@
 using Barbers.Core.DTOs;
+using Barbers.Core.Security;
 using Barbers.Core.Services.Premition;
 using Barbers.Core.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Barbers.Web.Pages.Admin.Users
 {
+    [PermitionChecker(2)]
     public class CreateUserModel : PageModel
     {
 
