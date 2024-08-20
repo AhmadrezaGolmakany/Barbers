@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Barber.Data.Entities.User;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -34,6 +35,7 @@ namespace Barbers.Core.DTOs
 
         [Compare("password", ErrorMessage = "کلمه عبور مغایرت دارد")]
         public string RePassword { get; set; }
+
     }
 
     public class LoginViewModel

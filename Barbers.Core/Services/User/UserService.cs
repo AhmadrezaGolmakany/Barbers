@@ -307,5 +307,22 @@ namespace Barbers.Core.Services.User
             user.Phone = model.Phone;
             UpdateUser(user);
         }
+
+        public void karbaeAdi(Barber.Data.Entities.User.User user)
+        {
+            if (IsExistEmail(user.Email) || IsExistUserName(user.UserName))
+            {
+                UserRole role = new UserRole()
+                {
+                    UserId = user.userId,
+                    RoleId = 3
+
+                };
+
+
+                _context.Add(role);
+                _context.SaveChanges();
+            }
+        }
     }
 }

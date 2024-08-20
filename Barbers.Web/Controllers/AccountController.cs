@@ -16,13 +16,11 @@ namespace Barbers.Web.Controllers
     {
         private readonly BarbersContext _context;
         private IUserService _service;
-        private readonly IPremitionService _premitionService;
 
-        public AccountController(BarbersContext context, IUserService service, IPremitionService premitionService)
+        public AccountController(BarbersContext context, IUserService service)
         {
             _context = context;
             _service = service;
-            _premitionService = premitionService;
         }
 
 
@@ -58,8 +56,7 @@ namespace Barbers.Web.Controllers
 
 
 
-
-
+            
             User user = new User()
             {
                 FullName = register.FullName,
@@ -67,22 +64,19 @@ namespace Barbers.Web.Controllers
                 password = PasswordHelper.EncodePasswordMd5(register.password),
                 Phone = register.Phone,
                 UserName = register.UserName,
-                JoinDate = DateTime.Now
-
-
-                
-                
-
-
+                JoinDate = DateTime.Now,
+               
             };
 
+           
             
 
 
 
 
 
-                _service.AddUSer(user);
+            _service.AddUSer(user);
+            _service.karbaeAdi(user);
             return Redirect("/Login");
         }
 

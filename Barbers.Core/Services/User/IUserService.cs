@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Barber.Data.Entities.User;
 using Barber.Data.Entities.Wallet;
 using Barbers.Core.DTOs;
 
@@ -31,6 +32,8 @@ namespace Barbers.Core.Services.User
         Barber.Data.Entities.User.User GetUserByUserName(string username);
 
         Barber.Data.Entities.User.User GetUserbyUserId(int userId);
+
+        void karbaeAdi(Barber.Data.Entities.User.User user);
 
         #endregion
 

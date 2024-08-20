@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Barber.Data.Entities.Premition;
+using Barber.Data.Entities.Product;
 using Barber.Data.Entities.User;
 using Barber.Data.Entities.Wallet;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +42,13 @@ namespace Barber.Data.Context
 
         public DbSet<Premitions> premitions { get; set; }
         public DbSet<RolePremition> rolePremitions { get; set; }
+        #endregion
+
+        #region Product
+
+        public DbSet<product> products { get; set; }
+
+
         #endregion
 
 
