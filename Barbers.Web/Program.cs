@@ -1,5 +1,6 @@
 using Barber.Data.Context;
 using Barbers.Core.Services.Premition;
+using Barbers.Core.Services.Product;
 using Barbers.Core.Services.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,7 @@ namespace Barbers.Web
 
             builder.Services.AddTransient<IUserService, UserService>();
             builder.Services.AddTransient<IPremitionService, PremitionService>();
+             builder.Services.AddTransient<IProductService, ProductService>();
 
             #endregion
 

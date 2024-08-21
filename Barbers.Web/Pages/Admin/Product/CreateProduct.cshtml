@@ -1,0 +1,56 @@
+﻿@page
+@model Barbers.Web.Pages.Admin.Product.CreateProductModel
+@{
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">افزودن کالا جدید</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <form method="post" enctype="multipart/form-data">
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    اطلاعات کالا
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label> نام کالا یا پکیج</label>
+                        <input type="text" asp-for="create.Name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>قیمت</label>
+                        <input type="text" asp-for="create.Price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label> توضیحات</label>
+                        <textarea class="form-control" asp-for="create.Dscription" rows="10"></textarea>
+                    </div>
+                    
+
+
+
+                    <input type="submit" value="ذخیره اطلاعات" class="btn btn-success" />
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+
+
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script>
+
+        CKEDITOR.replace('create_Dscription', {
+            customConfig: '/js/Config.js'
+        });
+
+    </script>
+}

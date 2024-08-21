@@ -1,4 +1,5 @@
 ﻿@page
+@using Barbers.Core.Convertors
 @model Barbers.Web.Pages.Admin.Product.IndexModel
 @{
 }
@@ -22,11 +23,9 @@
                         <div class="row">
                             <form>
                                 <div class="col-sm-5 col-md-5">
-                                    <input type="text" name="filterUserName" class="form-control" placeholder="نام کاربری" />
+                                    <input type="text" name="filterName" class="form-control" placeholder="نام کالا" />
                                 </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <input type="text" name="filterEmail" class="form-control" placeholder="ایمیل" />
-                                </div>
+                                
                                 <div class="col-sm-2 col-md-2">
                                     <button type="submit" class="btn btn-info">بگرد</button>
                                     <a class="btn btn-default btn-sm" href="/Admin/Users">خالی</a>
@@ -35,39 +34,38 @@
                         </div>
                         <div class="col-md-12" style="margin: 10px 0;">
 
-                            <a href="/admin/users/CreateUser" class="btn btn-outline btn-success">افزودن محصول جدید</a>
+                            <a href="/admin/product/CreateProduct" class="btn btn-outline btn-success">افزودن محصول جدید</a>
 
                         </div>
                         <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" aria-describedby="dataTables-example_info">
                             <thead>
                                 <tr>
                                     <th>نام محصول</th>
-                                    <th>موجودی</th>
                                     <th>قیمت</th>
-                                    <th>تاریخ ثبت نام</th>
+                                    <th>تاریخ ثبت </th>
                                     <th>دستورات</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                           @*      @foreach (var user in Model.UserForAdminViewModel.users)
+                                @foreach (var product in Model.product.products)
                                 {
                                     <tr>
-                                        <td>@user.UserName</td>
-                                        <td>@user.Email</td>
+                                        <td>@product.Name</td>
+                                        <td>@product.Price</td>
                                         
-                                        <td>@user.JoinDate.ToShamsi()</td>
+                                        <td>@product.CreateDate?.ToShamsi()</td>
                                         <td>
-                                            <a href="/Admin/Users/EditeUser/@user.userId" class="btn btn-warning btn-sm">
+                                            <a href="/Admin/Users/EditeUser/@product.ProductId" class="btn btn-warning btn-sm">
                                                 ویرایش
                                             </a>
-                                            <a href="/Admin/Users/DeleteUser/@user.userId" class="btn btn-danger btn-sm">
+                                            <a href="/Admin/Users/DeleteUser/@product.ProductId" class="btn btn-danger btn-sm">
                                                 حذف
                                             </a>
                                         </td>
                                     </tr>
 
-                                } *@
+                                }
 
 
 
@@ -80,10 +78,10 @@
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                                     <ul class="pagination">
 
-                                        @for (int i = 1; i <= Model.UserForAdminViewModel.PageCount; i++)
+                                        @for (int i = 1; i <= Model.product.PageCount; i++)
                                         {
-                                            <li class="paginate_button @((i==Model.UserForAdminViewModel.CurrentPage)?"active":"")" aria-controls="dataTables-example" tabindex="0">
-                                                <a href="/Admin/Users?PageId=@i">@i</a>
+                                            <li class="paginate_button @((i==Model.product.CurrentPage)?"active":"")" aria-controls="dataTables-example" tabindex="0">
+                                                <a href="/Admin/Product?PageId=@i">@i</a>
                                             </li>
                                         }
 

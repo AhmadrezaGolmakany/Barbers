@@ -1,17 +1,24 @@
-﻿using System;
+﻿using Barber.Data.Entities.Product;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Barber.Data.Entities.Product
+namespace Barbers.Core.DTOs
 {
-    public class product
+    public class ProductViewModel
     {
-        [Key]
-        public int ProductId { get; set; }
+        public List<product> products    { get; set; }
 
+        public int CurrentPage { get; set; }
+
+        public int PageCount { get; set; }
+    }
+
+    public class CreateProductViewModel
+    {
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(100, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
         public string Name { get; set; }
@@ -22,15 +29,5 @@ namespace Barber.Data.Entities.Product
 
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int Price { get; set; }
-
-
-        public bool IsDelete { get; set; }
-
-        public DateTime? CreateDate { get; set; }
-        public DateTime? DeleteDate   { get; set; }
-
-
-
-
     }
 }

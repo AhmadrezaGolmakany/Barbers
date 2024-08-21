@@ -1,4 +1,5 @@
 ﻿using Barber.Data.Entities.Product;
+using Barbers.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Barbers.Core.Services.Product
     public interface IProductService
     {
         int AddProduct(product product);
+
+        ProductViewModel GetProductForAdmin(int pageId=1 , string nameFilter="" );
     }
 }

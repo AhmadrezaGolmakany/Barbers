@@ -8,6 +8,7 @@ using Barber.Data.Context;
 using Barber.Data.Entities.User;
 using Barber.Data.Entities.Wallet;
 using Barbers.Core.DTOs;
+using Barbers.Core.Services.Product;
 using Microsoft.EntityFrameworkCore;
 using TopLearn.Core.Security;
 
@@ -155,7 +156,7 @@ namespace Barbers.Core.Services.User
 
             return list;
         }
-
+        
         public int AddUserForAdmin(CreateUserForAdmin create)
         {
             Barber.Data.Entities.User.User user = new Barber.Data.Entities.User.User();
