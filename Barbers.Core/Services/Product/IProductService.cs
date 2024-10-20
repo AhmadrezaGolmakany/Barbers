@@ -13,5 +13,10 @@ namespace Barbers.Core.Services.Product
         int AddProduct(product product);
 
         ProductViewModel GetProductForAdmin(int pageId=1 , string nameFilter="" );
+
+        List<product> GetAllProduct();
+
+
+        EditeProductViewModel GetProductForEdite(int Id);
     }
 }

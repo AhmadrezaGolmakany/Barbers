@@ -27,6 +27,23 @@ namespace Barbers.Core.Services.Product
             return product.ProductId;
         }
 
+        public List<product> GetAllProduct()
+        {
+            return _context.products.ToList();
+        }
+
+        public EditeProductViewModel GetProductForEdite(int Id)
+        {
+            return _context.products.Where(p => p.ProductId == Id)
+                .Select(p => new EditeProductViewModel()
+                {
+                    ID = p.ProductId,
+                    Name = p.Name,
+                    Dscription = p.Dscription,
+                    Price = p.Price
+                }).Single();
+        }
+
         public ProductViewModel GetProductForAdmin(int pageId = 1, string nameFilter = "")
         {
             IQueryable<product> result = _context.products;

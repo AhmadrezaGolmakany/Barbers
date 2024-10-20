@@ -30,4 +30,20 @@ namespace Barbers.Core.DTOs
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int Price { get; set; }
     }
+
+    public class EditeProductViewModel
+    {
+        public int ID { get; set; }
+
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(100, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(500, ErrorMessage = "{0}نمیتواند بیتر از {1}  کاراکتر باشد . ")]
+        public string Dscription { get; set; }
+
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int Price { get; set; }
+    }
 }

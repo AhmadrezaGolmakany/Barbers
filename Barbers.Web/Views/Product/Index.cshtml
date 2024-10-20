@@ -1,47 +1,46 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using Barber.Data.Entities.Product
+
 @{
+    List<Barber.Data.Entities.Product.product> pro = ViewBag.product as List<product>;
+    ViewData["Title"] = "فروشگاه";
 }
 
 <div class="site-section">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-md-7 text-center">
-                <h3 class="scissors text-center">دیگر مدل های کوتاه کردن و قیمت</h3>
+                <h3 class="scissors text-center">انواع پکیج ها و محصولات باربرز</h3>
                 <p class="mb-5 lead">
                     تمامی قیمت های نوشته شده به تومان می باشد
                 </p>
             </div>
         </div>
         <div class="row hair-style">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                <a href="#" class="place">
-                    <img src="/images/img_1.jpg" alt="Image placeholder">
-                    <h2>مدل شماره یک</h2>
-                    <span>50.00 فقط</span>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                <a href="#" class="place">
-                    <img src="/images/img_2.jpg" alt="Image placeholder">
-                    <h2>مدل شماره دو</h2>
-                    <span>50.00 فقط</span>
-                </a>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                <a href="#" class="place">
-                    <img src="/images/img_3.jpg" alt="Image placeholder">
-                    <h2>مدل شماره سه</h2>
-                    <span>50.00 فقط</span>
-                </a>
-            </div>
+            @foreach (var item in pro)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    <a href="#" class="place">
+                        <img src="/images/img_1.jpg" alt="Image placeholder">
+                        <h2>@item.Name</h2>
+                        <span>فقط @item.Price.ToString("#,0") تومان</span>
+                    </a>
+                </div>
+                
+            }
+
 
         </div>
     </div>
 </div>
 
-<div class="site-section bg-light" dir="ltr">
+
+
+
+
+@* <div class="site-section bg-light" dir="ltr">
     <div class="container">
         <div class="row justify-content-center  mb-5">
             <div class="col-md-7 text-center">
@@ -69,10 +68,10 @@
 
 
                     <div class="owl-stage-outer">
-                        <div class="owl-stage" style="transform: translate3d(-1065px, 0px, 0px); transition: 1s; width: 2485px;">
-                            <div class="owl-item cloned" style="width: 335px; margin-right: 20px;">
+                        <div class="owl-stage" style="transform: translate3d(-1883px, 0px, 0px); transition: all; width: 3391px;">
+                            <div class="owl-item cloned" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_2.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_1.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -91,9 +90,9 @@
                                     </div>
 
                                 </div>
-                            </div><div class="owl-item cloned" style="width: 335px; margin-right: 20px;">
+                            </div><div class="owl-item cloned" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_3.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_2.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -112,9 +111,9 @@
                                     </div>
 
                                 </div>
-                            </div><div class="owl-item" style="width: 335px; margin-right: 20px;">
+                            </div><div class="owl-item cloned" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_1.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_3.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -133,9 +132,9 @@
                                     </div>
 
                                 </div>
-                            </div><div class="owl-item active" style="width: 335px; margin-right: 20px;">
+                            </div><div class="owl-item" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_2.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_1.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -154,9 +153,9 @@
                                     </div>
 
                                 </div>
-                            </div><div class="owl-item active" style="width: 335px; margin-right: 20px;">
+                            </div><div class="owl-item" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_3.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_2.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -175,9 +174,9 @@
                                     </div>
 
                                 </div>
-                            </div><div class="owl-item cloned" style="width: 335px; margin-right: 20px;">
+                            </div><div class="owl-item active" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_1.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_3.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -196,9 +195,51 @@
                                     </div>
 
                                 </div>
-                            </div><div class="owl-item cloned" style="width: 335px; margin-right: 20px;">
+                            </div><div class="owl-item cloned active" style="width: 356.667px; margin-right: 20px;">
                                 <div class="item-1 h">
-                                    <img src="/images/img_2.jpg" alt="Image" class="img-fluid">
+                                    <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+                                    <div class="item-1-contents">
+                                        <h3>پکیج شماره یک </h3>
+                                        <ul>
+                                            <li class="d-flex">
+                                                <span>کوتاه کردن مو</span> <span class="price ml-auto">200.00</span>
+                                            </li>
+                                            <li class="d-flex"><span>لورم ایپسوم متن ساختگی با تولید </span><span class="price ml-auto">10.00</span></li>
+                                            <li class="d-flex"><span>لورم ایپسوم متن ساختگی با تولید </span><span class="price ml-auto">32.00</span></li>
+                                            <li class="d-flex">
+                                                <span>لورم ایپسوم</span><span class="price ml-auto">23.00</span>
+                                            </li>
+                                            <li class="d-flex">
+                                                <span>لورم ایپسوم</span><span class="price ml-auto">54.00</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item cloned active" style="width: 356.667px; margin-right: 20px;">
+                                <div class="item-1 h">
+                                    <img src="images/img_2.jpg" alt="Image" class="img-fluid">
+                                    <div class="item-1-contents">
+                                        <h3>پکیج شماره یک </h3>
+                                        <ul>
+                                            <li class="d-flex">
+                                                <span>کوتاه کردن مو</span> <span class="price ml-auto">200.00</span>
+                                            </li>
+                                            <li class="d-flex"><span>لورم ایپسوم متن ساختگی با تولید </span><span class="price ml-auto">10.00</span></li>
+                                            <li class="d-flex"><span>لورم ایپسوم متن ساختگی با تولید </span><span class="price ml-auto">32.00</span></li>
+                                            <li class="d-flex">
+                                                <span>لورم ایپسوم</span><span class="price ml-auto">23.00</span>
+                                            </li>
+                                            <li class="d-flex">
+                                                <span>لورم ایپسوم</span><span class="price ml-auto">54.00</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div><div class="owl-item cloned" style="width: 356.667px; margin-right: 20px;">
+                                <div class="item-1 h">
+                                    <img src="images/img_3.jpg" alt="Image" class="img-fluid">
                                     <div class="item-1-contents">
                                         <h3>پکیج شماره یک </h3>
                                         <ul>
@@ -219,14 +260,20 @@
                                 </div>
                             </div>
                         </div>
-                    </div><div class="owl-nav"><div class="owl-prev">prev</div><div class="owl-next">next</div></div><div class="owl-dots"><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div>
+                    </div><div class="owl-nav disabled"><div class="owl-prev">prev</div><div class="owl-next">next</div></div><div class="owl-dots disabled"><div class="owl-dot active"><span></span></div></div>
                 </div>
 
             </div>
         </div>
     </div>
-</div>
-<div class="site-section section-3" data-stellar-background-ratio="0.5" style="background-image: url(&quot;images/hero_2.jpg&quot;); background-position: 50% -257.367px;">
+</div> *@
+
+                                            
+                                        
+                                    
+                                
+                            
+<div class="site-section section-3" data-stellar-background-ratio="0.5" style="background-image: url(&quot;images/hero_2.jpg&quot;); background-position: 50% -163.734px;">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-7 text-center mb-5">
